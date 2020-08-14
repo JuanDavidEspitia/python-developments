@@ -90,17 +90,26 @@ df["MPG_Ciudad"]
 df["MPG_Ciudad"] = df["MPG_Ciudad"] * 0.425144
 df["MPG_Ciudad"]
 
-# Nuevamente renombramos las columnas
+# Nuevamente renombramos las columnas a Kilometros por galon
 df = df.rename(columns={
     "MPG_Carretera": "KPL_Carretera", 
     "MPG_Ciudad": "KPL_Ciudad"})
 df.dtypes
 
 
+# Creamos una nueva columna de consumo de combustible en carretera
+# Clasificamos por Bajo, Medio y Alto con base a una clasificacion del KPL en carretera
+df["KPL_Carretera"]
+# Aplicamos una funcion lambda con un IF anidado para clasificar
+df['Consumo_KPL_Carretera'] = df['KPL_Carretera'].apply(
+    lambda x: 'Bajo' if x <= 15 else 
+             'Medio 'if x > 15 and x <= 31 
+                     else 'Alto')
 
-
-
-
+# En algunas columnas con Nulos, vamos a reemplazar el valor Null por otro por defecto
+df.count()
+# ejemplo: Remplazamos el valor null por 0
+# df.loc[df['set_of_numbers'].isnull(), 'set_of_numbers'] = 0
 
 
 
