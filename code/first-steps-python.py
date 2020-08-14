@@ -81,6 +81,22 @@ df.isnull().sum() # Cantidad de nulos por columna
 # con el siguiente comando 
 # df = df.dropna()
 
+# Aplicamos algunas transformaciones convirtiendo de Millas/Galon (MPG) a Kilometros/Litro (KPL)
+df["MPG_Carretera"]
+df["MPG_Carretera"] = df["MPG_Carretera"] * 0.425144
+df["MPG_Carretera"]
+# Realizamos el mismo procedimiento pero para la columna MPG_Ciudad
+df["MPG_Ciudad"]
+df["MPG_Ciudad"] = df["MPG_Ciudad"] * 0.425144
+df["MPG_Ciudad"]
+
+# Nuevamente renombramos las columnas
+df = df.rename(columns={
+    "MPG_Carretera": "KPL_Carretera", 
+    "MPG_Ciudad": "KPL_Ciudad"})
+df.dtypes
+
+
 
 
 
