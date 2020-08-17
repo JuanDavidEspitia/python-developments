@@ -10,9 +10,9 @@ Desarrollos de practica en Python - Juan David Espitia A.
 
 # Primeros pasos - Importamos las librerias
 import pandas as pd
-import numpy as np
-import seaborn as sns                       #visualisation
-import matplotlib.pyplot as plt             #visualisation
+#import numpy as np
+#import seaborn as sns                       #visualisation
+#import matplotlib.pyplot as plt             #visualisation
 
 # ---- Comenzamos el analisis exploratorio de los datos  ---- #
 
