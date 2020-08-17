@@ -106,11 +106,33 @@ df['Consumo_KPL_Carretera'] = df['KPL_Carretera'].apply(
              'Medio 'if x > 15 and x <= 31 
                      else 'Alto')
 
+
+# Agrupamos la cantidad de cada item del campo Categoria_Mercado, Marca
+# Obteniendo asi promedio, sumatoria y cantidad
+df.groupby(['Categoria_Mercado'])
+df.groupby(['Categoria_Mercado']).count()
+df.groupby(by=["Marca"]).sum()
+df.groupby(by=["Marca"]).mean()
+df.groupby(['Categoria_Mercado', 'Año']).count()
+df2 = df.groupby(['Marca','Año']).agg(['count', 'mean']) # Agregando dos columnas
+df2 = df.groupby(['Marca']).size().reset_index(name='Cantidad')
+df2 = df.groupby(['Marca', 'Año']).size().reset_index(name='Cantidad')
+
+# Guardamos la primera version del Dataframe  en formato CSV
+df.to_csv (r'C:/Users/jespitiaa/Documents/GitHub/python-developments/output/dataset_car_usa.csv'
+           ,index = False, header=True)
+
 # En algunas columnas con Nulos, vamos a reemplazar el valor Null por otro por defecto
 df.count()
 # ejemplo: Remplazamos el valor null por 0
 # df.loc[df['set_of_numbers'].isnull(), 'set_of_numbers'] = 0
-
-
+# Reemplazamos los registros vacios en la columna Categoria_Mercado por 'Default'
+# Forma 1
+df.loc[df['Categoria_Mercado'].isnull(), 'Categoria_Mercado'] = 'Default'
+# Forma 2
+df["Categoria_Mercado"].fillna("Sin Categoria", inplace = True)
+# Guardamos nuevamente el Dataframe en formato CSV 
+df.to_csv (r'C:/Users/jespitiaa/Documents/GitHub/python-developments/output/df3_car_usa.csv'
+           ,index = False, header=True)
 
 
