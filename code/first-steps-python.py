@@ -189,6 +189,20 @@ plt.ylabel('Cantidad de autos')
 plt.xlabel('Tipo De Combustible');
 plt.show()
 
+# Analicemos los deciles y algunos percentiles para entender esos valores anómalos. Para esto, usaremos el método quantile para calcular los percentiles.
+# Los cuartiles, que dividen a la distribución en cuatro partes (corresponden a los cuantiles 0,25; 0,50 y 0,75);
+# Los quintiles, que dividen a la distribución en cinco partes (corresponden a los cuantiles 0,20; 0,40; 0,60 y 0,80);
+# Los deciles, que dividen a la distribución en diez partes;
+# Los percentiles, que dividen a la distribución en cien partes.
+
+# En el método Quantile: 0, 0.5 y 1 equivalen a valores mínimo, mediana y máximo.
+sns.boxplot(x=df['Precio'])
+df['Precio'].quantile([0, .1, .2, .3, .4, .5, .6, .7, .8, .9, .97, .98, .99, 1])
+
+
+
+
+
 
 
 
