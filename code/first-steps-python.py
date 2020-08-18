@@ -11,8 +11,10 @@ Desarrollos de practica en Python - Juan David Espitia A.
 # Primeros pasos - Importamos las librerias
 import pandas as pd
 #import numpy as np
-#import seaborn as sns                       #visualisation
-#import matplotlib.pyplot as plt             #visualisation
+import seaborn as sns                       #visualisation
+import matplotlib.pyplot as plt             #visualisation
+#%matplotlib qt
+#%matplotlib inline 
 
 # ---- Comenzamos el analisis exploratorio de los datos  ---- #
 
@@ -134,5 +136,59 @@ df["Categoria_Mercado"].fillna("Sin Categoria", inplace = True)
 # Guardamos nuevamente el Dataframe en formato CSV 
 df.to_csv (r'C:/Users/jespitiaa/Documents/GitHub/python-developments/output/df3_car_usa.csv'
            ,index = False, header=True)
+df.head(5)
+
+# ----------------- Analisis exploratorio de datos ------------------- #
+# Detectando valores atípicos
+sns.boxplot(data=df)
+# Detectanmos que la Columna Precio tiene muchos datos atipicos
+# Analizamos por separado cada columna
+sns.boxplot(x=df['Precio'])
+sns.boxplot(x=df['Potencia_HP'])
+sns.boxplot(x=df['Cilindros'])
+
+# ----------------- Analizamos por separado cada columna --------------- #
+
+# Analizamos en detalle
+sns.distplot(df['Precio'])
+df['Precio'].describe()
+
+# Analizamos en detalle
+sns.distplot(df['Año'])
+df['Año'].describe()
+
+# Analizamos en detalle
+sns.distplot(df['Cilindros'])
+df['Cilindros'].describe()
+
+# Histogramas por el campo Marca
+df["Marca"].value_counts().plot(kind='bar', figsize=(20,5))
+plt.title("Cantidad de autos por marca")
+plt.ylabel('Cantidad de autos')
+plt.xlabel('Marca');
+plt.show()
+
+# Histogramas por el campo Categoria_Mercado
+df["Categoria_Mercado"].value_counts().plot(kind='bar', figsize=(20,5))
+plt.title("Cantidad de autos por marca")
+plt.ylabel('Cantidad de autos')
+plt.xlabel('Categoria');
+plt.show()
+
+# Histogramas por el campo Año
+df["Año"].value_counts().plot(kind='bar', figsize=(20,5))
+plt.title("Cantidad de autos por Año")
+plt.ylabel('Cantidad de autos')
+plt.xlabel('Año');
+plt.show()
+
+# Histogramas por el campo Tipo_Combustible
+df["Tipo_Combustible"].value_counts().plot(kind='bar', figsize=(20,5))
+plt.title("Cantidad de autos por marca")
+plt.ylabel('Cantidad de autos')
+plt.xlabel('Tipo De Combustible');
+plt.show()
+
+
 
 
