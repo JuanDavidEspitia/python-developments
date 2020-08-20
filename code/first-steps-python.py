@@ -199,8 +199,33 @@ plt.show()
 sns.boxplot(x=df['Precio'])
 df['Precio'].quantile([0, .1, .2, .3, .4, .5, .6, .7, .8, .9, .97, .98, .99, 1])
 
+# Recortemos los outliers... por ejemplo, recortando entre 200 y el cuartil del 90% (67208 como vimos en la celda anterior)
+corte_inferior = 200
+corte_superior = df["Precio"].quantile(0.9)
 
+df = df[(df["Precio"] < corte_superior) & (df["Precio"] > corte_inferior)]
 
+# -------------------  Tipos de graficas   ------------------- #
+
+sns.distplot(df['Precio'])
+
+# Histogramas
+df["Marca"].value_counts().plot(kind='bar', figsize=(20,5))
+plt.title("Cantidad de autos por marca")
+plt.ylabel('Cantidad de autos')
+plt.xlabel('Marca');
+
+# Mapas de calor
+correlaciones= df.corr()
+sns.heatmap(correlaciones)
+correlaciones
+
+# Dispersion
+fig, ax = plt.subplots(figsize=(10,6))
+ax.scatter(df['Potencia_HP'], df['Precio'])
+ax.set_xlabel('Potencia_HP')
+ax.set_ylabel('Precio')
+plt.show()
 
 
 
