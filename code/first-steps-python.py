@@ -10,11 +10,23 @@ Desarrollos de practica en Python - Juan David Espitia A.
 
 # Primeros pasos - Importamos las librerias
 import pandas as pd
-#import numpy as np
+import numpy as np
 import seaborn as sns                       #visualisation
 import matplotlib.pyplot as plt             #visualisation
 #%matplotlib qt
 #%matplotlib inline 
+
+#Libreria calidad de datos
+import pandas_profiling 
+
+#Librerias de modelos
+from sklearn import linear_model
+from sklearn import model_selection
+from sklearn.metrics import classification_report
+from sklearn.metrics import confusion_matrix
+from sklearn.metrics import accuracy_score
+from sklearn.preprocessing import MinMaxScaler
+
 
 # ---- Comenzamos el analisis exploratorio de los datos  ---- #
 
@@ -227,7 +239,11 @@ ax.set_xlabel('Potencia_HP')
 ax.set_ylabel('Precio')
 plt.show()
 
-
-
+# Perfilamiento de datos
+df.profile_report(style={'full_width':True})
+profile = df.profile_report()
+rejected_variables = profile.get_rejected_variables(threshold=1)
+profile = df.profile_report(title='Pandas Profiling Report')
+profile.to_file(output_file='C:/Users/jespitiaa/Documents/GitHub/python-developments/output/Perfilado_df.html')
 
 
